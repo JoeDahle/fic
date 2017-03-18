@@ -5,19 +5,27 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body'
 });
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractSass = new ExtractTextPlugin({
+  filename: '[name].[contenthash].css',
+  disable: process.env.NODE_ENV === 'development'
+});
+
 module.exports = {
   entry: [
     './app/index.js'
   ],
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
-      {test: /\.css$/, loader: "style-loader!css-loader"}
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      {test: /\.scss$/, loader: ['style-loader', 'css-loader']}
     ]
   },
   output: {
-    filename: "index_bundle.js",
+    filename: 'index_bundle.js',
     path: __dirname + '/dist'
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    HtmlWebpackPluginConfig,
+    extractSass]
 };
