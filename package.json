@@ -1,0 +1,33 @@
+{
+  "name": "fic",
+  "version": "1.0.0",
+  "description": "Tbell needs fried ice cream, among other items.",
+  "main": "index.js",
+  "scripts": {
+    "production": "webpack -p",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoeDahle/fic.git"
+  },
+  "author": "Joe Dahle",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/JoeDahle/fic/issues"
+  },
+  "homepage": "https://github.com/JoeDahle/fic#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-react": "^6.23.0",
+    "html-webpack-plugin": "^2.28.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "3.0.2",
+    "style-loader": "^0.14.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
