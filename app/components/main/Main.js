@@ -2,7 +2,7 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var MainContainer = require('../../containers/main/MainContainer');
-var Header = require('../../components/Header/Header');
+var Header = require('../../components/header/Header');
 var style = require('./_index.scss');
 var json = require('../../content/text');
 
