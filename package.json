@@ -4,7 +4,7 @@
   "description": "Tbell needs fried ice cream, among other items.",
   "main": "index.js",
   "scripts": {
-    "production": "webpack -p",
+    "prod": "webpack -p",
     "dev": "webpack-dev-server",
     "start": "node server.js"
   },
