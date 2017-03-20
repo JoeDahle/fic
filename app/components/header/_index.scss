@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Kalam|Questrial');
+$font-cursive: 'Kalam', cursive;
+
+.header-component {
+  font-family: $font-cursive;
+  font-size: 4em;
+  color: #e1e1e1;
+}
