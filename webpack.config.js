@@ -11,6 +11,9 @@ var extractSass = new ExtractTextPlugin({
   disable: process.env.NODE_ENV === 'development'
 });
 
+// TODO: update to resolve path
+// then update component and container imports
+
 module.exports = {
   entry: [
     './app/index.js'
