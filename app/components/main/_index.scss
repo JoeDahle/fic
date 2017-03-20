@@ -1,7 +1,6 @@
 // Main Component
 $backgroud_color: rgb(134, 36, 186);
-@import url('https://fonts.googleapis.com/css?family=Kalam|Questrial');
-$font-cursive: 'Kalam', cursive;
+@import url('https://fonts.googleapis.com/css?family=Questrial');
 $font-standard: 'questrial', sans-serif;
 $btn-color: rgba(163, 151, 252, 0.6);
 $btn-color-hover: rgba(163, 151, 252, 1);
@@ -12,12 +11,6 @@ $btn-color-hover: rgba(163, 151, 252, 1);
   align-items: center;
   justify-content: center;
   align-items: center;
-}
-
-.main-header {
-  font-family: $font-cursive;
-  font-size: 4em;
-  color: #e1e1e1;
 }
 
 .main-about {
