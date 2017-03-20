@@ -8,12 +8,14 @@ var style = require('./_index.scss');
 function Main(){
   return (
     <MainContainer>
-      <h1 className="main-header">{json.index.head}</h1>
-      <p className="main-about">{json.index.about}</p>
-        <Link to='/spreadtheword'>
-          <button type='button'>Spread the Word</button>
-        </Link>
-      </MainContainer>
+      <div className="main">
+        <h1 className="main-header">{json.index.head}</h1>
+        <p className="main-about">{json.index.about}</p>
+          <Link to='/spreadtheword'>
+            <button className="btn" type='button'>Spread the Word</button>
+          </Link>
+      </div>
+    </MainContainer>
   )
 }
 

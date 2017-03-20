@@ -2,6 +2,7 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 var PropTypes = React.PropTypes;
+var style = require('./_index.scss');
 
 function SpreadTheWordButton(){
   getDefaultProps: function(){
@@ -12,7 +13,7 @@ function SpreadTheWordButton(){
 
   return (
     <Link to='/spreadtheword'>
-      <button type='button'>{this.props.text}</button>
+      <button className="btn" type='button'>{this.props.text}</button>
     </Link>
   )
 }
