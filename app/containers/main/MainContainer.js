@@ -1,9 +1,9 @@
 var React = require('react');
-// var style = require('../components/Main/index.scss');
+var style = require('./_index.scss');
 
 function MainContainer(props) {
     return (
-      <div className='Main-Container'>
+      <div className='main-container'>
         {props.children}
       </div>
     );

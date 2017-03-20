@@ -1,0 +1,21 @@
+$backgroud_color: rgb(134, 36, 186);
+@import url('https://fonts.googleapis.com/css?family=Kalam|Questrial');
+$font-cursive: 'Kalam', cursive;
+$font-standard: 'questrial', sans-serif;
+
+// * {
+//   font-family: $font-standard;
+//   background-color: $backgroud_color;
+//   width: 100%;
+//   height: 100%;
+// }
+
+.main-header {
+  font-family: $font-cursive;
+  font-size: 4em;
+}
+
+.main-about {
+  color: #fff;
+  font-size: 2em;
+}
