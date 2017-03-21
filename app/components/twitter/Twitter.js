@@ -9,7 +9,6 @@ var TwitterHashSearch = require('react-twitter-widgets').Timeline;
 var style = require('./_index.scss');
 
 var Twitter = React.createClass({
-
   render: function() {
     return (
       <div className='twitter-container'>
