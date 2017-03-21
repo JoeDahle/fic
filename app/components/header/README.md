@@ -11,4 +11,4 @@ Header Component displaying simple text in header form.
 ### Props
 |Prop       | Type      | Default     | Possible Values
 |-----------|-----------|-------------|-----------------------
-|**text     | string    | json data   | 
+|*text*     | string    | json data   | 

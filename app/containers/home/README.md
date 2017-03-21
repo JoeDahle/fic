@@ -11,4 +11,4 @@ Container for home elements
 ### Props
 |Prop       | Type      | Default     | Possible Values
 |-----------|-----------|-------------|-----------------------
-|**none     |           |             | 
+|*none*     |           |             | 

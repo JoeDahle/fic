@@ -11,4 +11,4 @@ A container for containers
 ### Props
 |Prop       | Type      | Default     | Possible Values
 |-----------|-----------|-------------|-----------------------
-|**none     |           |             | 
+|*none*     |           |             | 

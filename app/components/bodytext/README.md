@@ -11,4 +11,4 @@ A component rendering a body of text
 ### Props
 |Prop       | Type      | Default     | Possible Values
 |-----------|-----------|-------------|-----------------------
-| **text    | string    | json data   | 
+| *text*    | string    | json data   | 
