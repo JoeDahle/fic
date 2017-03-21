@@ -15,13 +15,25 @@ var style = require('./_index.scss');
 var json = require('../../content/text');
 
 var HomeContainer = React.createClass({
-
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+  handleSpreadClick: function(e){
+    e.preventDefault();
+    if(this.props.routeParams.spreadtheword){
+      this.context.router.push({
+        pathname: '/spreadtheword'
+      })
+    } else {
+      console.warn('error in HomeContainer handleSpreadClick: ' + e);
+    }
+  },
   render: function() {
     return (
       <div className='home-container'>
         <Header />
         <BodyText />
-        <SpreadTheWordButton />
+        <SpreadTheWordButton onSpreadClick={this.handleSpreadClick}/>
       </div>
     );
   }
