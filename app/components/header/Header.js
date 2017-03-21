@@ -5,7 +5,7 @@ var style = require('./_index.scss');
 
 var Header = React.createClass({
   PropTypes: {
-    text: PropTypes.string,
+    text: PropTypes.string
   },
   getDefaultProps: function(){
     return {
