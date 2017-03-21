@@ -1,9 +1,14 @@
-#### React component
+## Header Component
+___
 
-##### USE
+Header Component displaying simple text in header form.
 
-<Header />
+### Example
+```js
+<Header text={string} />
+```
 
-##### PropTypes
-
-text: string
+### Props
+|Prop       | Type      | Default     | Possible Values
+|-----------|-----------|-------------|-----------------------
+|**text     | string    | json data   | 

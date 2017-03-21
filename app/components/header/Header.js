@@ -20,7 +20,9 @@ var Header = React.createClass({
   },
   render: function() {
     return (
-      <h1 className="header-component">{this.props.text}</h1>
+      <div className="header">
+        <h1 className="header-text">{this.props.text}</h1>
+      </div>
     );
   }
 
