@@ -11,6 +11,8 @@ var extractSass = new ExtractTextPlugin({
   disable: process.env.NODE_ENV === 'development'
 });
 
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 // TODO: update to resolve path
 // then update component and container imports
 
@@ -32,5 +34,15 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     extractSass,
+    new BrowserSyncPlugin({
+      // proxy browsersync thorugh webpack dev server
+      host: 'localhost',
+      port: 8090,
+      proxy: 'http://localhost:8080'
+    },
+    {
+      // Prevent browsersync from reloading, let webpack dev server do it
+      reload: false
+    })
   ]
 };
