@@ -21,14 +21,11 @@ var ShareContainer = React.createClass({
   componentDidMount: function(){
     console.log("share mounted");
   },
-  handleLoad: function(e){
-    console.log(e + 'e');
-  },
   render: function() {
     return (
       <div className="share-container">
         <Header text={"Let's do this!"} />
-        <Twitter onLoad={this.handleLoad}/>
+        <Twitter />
       </div>
     )
   }
