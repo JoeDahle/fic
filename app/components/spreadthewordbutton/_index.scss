@@ -1,0 +1,31 @@
+// Spread the Word Button
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+$font-standard: 'questrial', sans-serif;
+
+$backgroud_color: rgb(134, 36, 186);
+$btn-color: rgba(163, 151, 252, 0.6);
+$btn-color-hover: rgba(163, 151, 252, 1);
+
+.btn {
+  background: $btn-color;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 4px 8px #1e1e1e;
+  -moz-box-shadow: 2px 4px 8px #1e1e1e;
+  box-shadow: 2px 4px 8px #1e1e1e;
+  border: none;
+  color: #e1e1e1;
+  font-size: 1em;
+  padding: 9px 20px 10px 20px;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  font-family: $font-standard;
+}
+
+.btn:hover {
+  background: $btn-color-hover;
+  transition-duration: 0.5s;
+  text-decoration: none;
+  color: #1e1e1e;
+}
