@@ -36,6 +36,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^4.5.0",
     "react-addons-css-transition-group": "^15.4.2",
+    "react-twitter-widgets": "^1.2.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.1",
     "svgo": "^0.7.2",
