@@ -4,14 +4,14 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
-var Main = require('../components/main/Main');
-var SpreadTheWordContainer = require('../containers/SpreadTheWord/SpreadTheWordContainer');
+var MainContainer = require('../containers/main/MainContainer');
+var SpreadTheWordContainer = require('../components/spreadthewordbutton/SpreadTheWordButton');
 
 var routes = (
   <Router history={hashHistory}>
-    <Route path='/' component={Main}>
-      <IndexRoute component={Main} />
-      <Route path='spreadtheword' component={SpreadTheWordContainer} />
+    <Route path='/' component={MainContainer}>
+      <IndexRoute component={MainContainer} />
+      <Route path='/spreadtheword' component={MainContainer} />
     </Route>
   </Router>
 );
