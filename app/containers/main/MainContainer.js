@@ -10,7 +10,7 @@ var style = require('./_index.scss');
 function MainContainer(props) {
     return (
       <div className='main-container'>
-        <HomeContainer />
+        {props.children}
       </div>
     );
   }
