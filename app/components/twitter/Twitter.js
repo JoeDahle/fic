@@ -12,8 +12,8 @@ var Twitter = React.createClass({
 
   render: function() {
     return (
-      <div className="twitter-container">
-        <TwitterHashSearch dataSource={{
+      <div className='twitter-container'>
+        <TwitterHashSearch className='twitter-component' dataSource={{
             sourceType: 'widget',
             widgetId: '844245316706566144'
           }} />
