@@ -24,7 +24,8 @@ module.exports = {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
       {test: /\.json$/, exclude: /node_modules/, loaders: ['json-loader']},
-      {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']}
+      {test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader']},
+      {test: /\.png$/i, use: ['url-loader?limit=10000', 'img-loader']}
     ]
   },
   output: {

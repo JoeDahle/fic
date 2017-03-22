@@ -9,7 +9,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: #9F201B;
+  background-color: #9F20B1;
   background-image:
     -webkit-linear-gradient(#9F20B1, #4B0C5E);
   background-image:
@@ -18,4 +18,7 @@
     linear-gradient(#9F20B1, #4B0C5E);
     overflow: auto;
     min-height: -webkit-min-content;
+  background-image: url('../../assets/tbelltextbg.png');
+  background-position: center;
+  background-size: cover;
 }
