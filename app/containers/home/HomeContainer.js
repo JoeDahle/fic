@@ -6,7 +6,7 @@ var PropTypes = React.PropTypes;
 // components
 var Header = require('../../components/header/Header');
 var BodyText = require('../../components/bodytext/BodyText');
-var SpreadTheWordButton = require('../../components/spreadthewordbutton/SpreadTheWordButton');
+var NavButton = require('../../components/navbutton/NavButton');
 
 // styles
 var style = require('./_index.scss');
@@ -33,7 +33,10 @@ var HomeContainer = React.createClass({
       <div className='home-container'>
         <Header />
         <BodyText />
-        <SpreadTheWordButton onSpreadClick={this.handleSpreadClick}/>
+        <NavButton
+          onSpreadClick={this.handleSpreadClick}
+          path={'/spreadtheword'}
+          text={'Spread the Word!'}/>
       </div>
     );
   }

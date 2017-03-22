@@ -4,18 +4,20 @@ var Link = ReactRouter.Link;
 var PropTypes = React.PropTypes;
 var style = require('./_index.scss');
 
-var SpreadTheWordButton = React.createClass({
+var NavButton = React.createClass({
   PropTypes: {
-    text: PropTypes.string
+    text: PropTypes.string,
+    path: PropTypes.string
   },
   getDefaultProps: function(){
     return {
-      text: 'Spread The Word!'
+      text: 'Go Home',
+      path: '/home'
     }
   },
   render: function() {
     return (
-      <Link to='/spreadtheword'>
+      <Link to={this.props.path}>
         <button className="btn" type='button'>{this.props.text}</button>
       </Link>
     );
@@ -23,4 +25,4 @@ var SpreadTheWordButton = React.createClass({
 
 });
 
-module.exports = SpreadTheWordButton;
+module.exports = NavButton;
