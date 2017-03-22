@@ -5,6 +5,7 @@ var PropTypes = React.PropTypes;
 // components
 var Header = require('../../components/header/Header');
 var Twitter = require('../../components/twitter/Twitter');
+var FBGraph = require('../../components/fbgraph/FBGraph');
 var Loading = require('../../components/loading/Loading');
 var NavButton = require('../../components/navbutton/NavButton');
 // styles
@@ -29,6 +30,7 @@ var ShareContainer = React.createClass({
         <Twitter />
         <NavButton path={'home'}
           text={'Go Home'} />
+        <FBGraph />
       </div>
     )
   }
