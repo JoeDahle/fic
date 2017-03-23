@@ -5,10 +5,10 @@ Component for FB Graph api
 
 ### Example
 ```js
-<FBGraph query={string}/>
+<FBGraph />
 ```
 
 ### Props
 |Prop       | Type      | Default     | Possible Values
 |-----------|-----------|-------------|-----------------------
-|*query*    | string    | FIC         |
+|*none*     |           |             |
