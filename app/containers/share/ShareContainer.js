@@ -20,9 +20,6 @@ var ShareContainer = React.createClass({
       isLoading: true
     }
   },
-  componentDidMount: function(){
-    console.log("share mounted");
-  },
   render: function() {
     return (
       <div className="share-container">
