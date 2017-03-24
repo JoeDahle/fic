@@ -6,6 +6,7 @@ var PropTypes = React.PropTypes;
 var Graph = require('fb-react-sdk');
 
 // components
+var SignInButton = require('../../components/signinbutton/SignInButton');
 
 // styles
 var style = require('./_index.scss');
@@ -16,6 +17,14 @@ var style = require('./_index.scss');
  *
  */
 var FBGraph = React.createClass({
+  getInitialState: function(){
+    return {
+      loggedIn: false,
+      username: '',
+      buttonText: 'Continue using Facebook',
+      picture: ''
+    }
+  },
   /**
    * Set headers for Graph session, retrieve a logged in state
    * @return [type] [description]
@@ -23,10 +32,10 @@ var FBGraph = React.createClass({
   componentDidMount: function() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '267552053697671',
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v2.1'
+        appId: '267552053697671',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.8'
       });
       FB.getLoginStatus(function(response) {
         this.statusChangeCallback(response);
@@ -50,6 +59,10 @@ var FBGraph = React.createClass({
    */
   statusChangeCallback: function(response){
     if(response.status === 'connected'){
+      this.setUsername();
+      this.setState({
+        loggedIn: true,
+      });
       this.setGraphAuthToken(response.authResponse.accessToken);
     } else if(response.status === 'not_authorized'){
       console.warn('//DEV// statusChangeCallback is not authorized');
@@ -62,8 +75,21 @@ var FBGraph = React.createClass({
    */
   checkLoginState: function(){
     FB.getLoginStatus(function(response){
+      console.log(response, "getloginstate");
+      this.getUsername(response.authResponse.userID);
       this.statusChangeCallback(response);
     }.bind(this))
+  },
+  setUsername: function() {
+    FB.api('/me?fields=picture,name', function(response) {
+      console.log('//DEV// setUsername ', response);
+      this.setState({
+        username: response.name,
+        picture: response.picture,
+        buttonText: "Hello " + response.name
+      })
+      console.log(this.state);
+    }.bind(this));
   },
   /**
    * event handler for login component
@@ -87,20 +113,26 @@ var FBGraph = React.createClass({
    * NOTE update the query URL maybe?
    */
   getGraphSearchData: function(){
-    var searchOptions = {
-      page_id: '270326020090570/feed',
-      type: 'status',
-      post_id: "270326020090570_270336470089525"
-    };
-    Graph.get('270326020090570/feed', function(err, response){
+    Graph.get('270326020090570/feed?fields=from,shares,picture,message,icon', function(err, response){
       console.log(response);
     });
   },
+  // NOTE render based on logges in status
   render: function() {
+    if(this.state.loggedIn === 'true'){
+      return (
+        <div className="fb"></div>
+      )
+    } else {
+      <div>need to sign in</div>
+    }
+
     return (
       <div>
-        <h1 onClick={this.handleClick}>login</h1>
         <h2 onClick={this.getGraphSearchData}>get data</h2>
+        <div className="facebook-container">
+          <SignInButton onClick={this.handleClick} text={this.state.buttonText} active={this.state.loggedin} />
+        </div>
       </div>
     );
   }

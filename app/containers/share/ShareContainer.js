@@ -24,7 +24,7 @@ var ShareContainer = React.createClass({
     return (
       <div className="share-container">
         <Header text={"Let's do this!"} />
-        <Twitter />
+        
         <NavButton path={'home'}
           text={'Go Home'} />
         <FBGraph />
