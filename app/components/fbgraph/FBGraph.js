@@ -7,9 +7,12 @@ var Graph = require('fb-react-sdk');
 
 // components
 var SignInButton = require('../../components/signinbutton/SignInButton');
+var GraphView = require('../../components/graphview/GraphView');
 
 // styles
 var style = require('./_index.scss');
+
+var posts = {};
 
 /**
  * React component to handle login, and page feed request and rendering
@@ -113,15 +116,23 @@ var FBGraph = React.createClass({
    * NOTE update the query URL maybe?
    */
   getGraphSearchData: function(){
-    Graph.get('270326020090570/feed?fields=from,shares,picture,message,icon', function(err, response){
+    Graph.get('270326020090570/feed?fields=from,shares,picture,message,updated_time', function(err, response){
       console.log(response);
+      posts = response;
     });
   },
-  // NOTE render based on logges in status
+  // NOTE render based on logged in status
   render: function() {
     if(this.state.loggedIn === 'true'){
       return (
-        <div className="fb"></div>
+        <div className="fb">
+          {for(post in posts){
+            <GraphView username={post.username}
+              picture={post.picture}
+              timeStamp={post.timeStamp}
+              message={post.message}
+          }}
+        </div>
       )
     } else {
       <div>need to sign in</div>
