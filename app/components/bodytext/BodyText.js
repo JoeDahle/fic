@@ -16,7 +16,7 @@ var BodyText = React.createClass({
   },
   getDefaultProps: function(){
     return {
-      text: json
+      text: json.index.about
     }
   },
   getInitialState: function(){

@@ -13,7 +13,7 @@ var Header = React.createClass({
   },
   getDefaultProps: function(){
     return {
-      text: json
+      text: json.index.head
     }
   },
   getInitialState: function(){
