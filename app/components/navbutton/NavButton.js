@@ -1,8 +1,11 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
-var PropTypes = React.PropTypes;
-var style = require('./_index.scss');
+// core
+import React from 'react';
+import PropTypes from  'react';
+import { ReactRouter } from  'react-router';
+import { Link } from 'react-router';
+
+// styles
+import style from './_index.scss';
 
 var NavButton = React.createClass({
   PropTypes: {
@@ -25,4 +28,4 @@ var NavButton = React.createClass({
 
 });
 
-module.exports = NavButton;
+export default NavButton;

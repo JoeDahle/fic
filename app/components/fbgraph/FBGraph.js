@@ -1,18 +1,15 @@
 // core
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from 'react';
 
 // data
-var Graph = require('fb-react-sdk');
+import Graph from 'fb-react-sdk';
 
 // components
-var SignInButton = require('../../components/signinbutton/SignInButton');
-var GraphView = require('../../components/graphview/GraphView');
+import SignInButton from '../../components/signinbutton/SignInButton';
 
 // styles
-var style = require('./_index.scss');
-
-var posts = {};
+import './_index.scss';
 
 /**
  * React component to handle login, and page feed request and rendering
@@ -123,21 +120,6 @@ var FBGraph = React.createClass({
   },
   // NOTE render based on logged in status
   render: function() {
-    if(this.state.loggedIn === 'true'){
-      return (
-        <div className="fb">
-          {for(post in posts){
-            <GraphView username={post.username}
-              picture={post.picture}
-              timeStamp={post.timeStamp}
-              message={post.message}
-          }}
-        </div>
-      )
-    } else {
-      <div>need to sign in</div>
-    }
-
     return (
       <div>
         <h2 onClick={this.getGraphSearchData}>get data</h2>
@@ -150,4 +132,4 @@ var FBGraph = React.createClass({
 
 });
 
-module.exports = FBGraph;
+export default FBGraph;

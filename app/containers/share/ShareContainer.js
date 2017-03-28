@@ -1,15 +1,16 @@
 // core
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from 'react';
 
 // components
-var Header = require('../../components/header/Header');
-var Twitter = require('../../components/twitter/Twitter');
-var FBGraph = require('../../components/fbgraph/FBGraph');
-var Loading = require('../../components/loading/Loading');
-var NavButton = require('../../components/navbutton/NavButton');
+import Header from '../../components/header/Header';
+import Twitter from '../../components/twitter/Twitter';
+import FBGraph from '../../components/fbgraph/FBGraph';
+import Loading from '../../components/loading/Loading';
+import NavButton from '../../components/navbutton/NavButton';
+
 // styles
-var style = require('./_index.scss');
+import './_index.scss';
 
 var ShareContainer = React.createClass({
   contextTypes: {
@@ -24,7 +25,7 @@ var ShareContainer = React.createClass({
     return (
       <div className="share-container">
         <Header text={"Let's do this!"} />
-        
+
         <NavButton path={'home'}
           text={'Go Home'} />
         <FBGraph />
@@ -34,4 +35,4 @@ var ShareContainer = React.createClass({
 
 });
 
-module.exports = ShareContainer;
+export default ShareContainer;

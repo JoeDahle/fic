@@ -1,18 +1,17 @@
-// Home Container
 // Core
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from 'react';
 
 // components
-var Header = require('../../components/header/Header');
-var BodyText = require('../../components/bodytext/BodyText');
-var NavButton = require('../../components/navbutton/NavButton');
+import Header from '../../components/header/Header'
+import BodyText from '../../components/bodytext/BodyText'
+import NavButton from '../../components/navbutton/NavButton'
 
 // styles
-var style = require('./_index.scss');
+import './_index.scss';
 
 // Data
-var json = require('../../content/text');
+import json from '../../content/text';
 
 var HomeContainer = React.createClass({
   contextTypes: {
@@ -32,4 +31,4 @@ var HomeContainer = React.createClass({
 
 });
 
-module.exports = HomeContainer;
+export default HomeContainer;

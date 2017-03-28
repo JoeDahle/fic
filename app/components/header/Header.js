@@ -1,7 +1,11 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var json = require('../../content/text').index.head;
-var style = require('./_index.scss');
+import React from 'react';
+import PropTypes from 'react';
+
+// styles
+import './_index.scss';
+
+// data
+import json from '../../content/text';
 
 var Header = React.createClass({
   PropTypes: {
@@ -28,4 +32,4 @@ var Header = React.createClass({
 
 });
 
-module.exports = Header;
+export default Header;

@@ -1,15 +1,14 @@
 // Core
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from 'react';
 
 // components
 
 // styles
-var style = require('./_index.scss');
+import './_index.scss';
 
 // Data
-var json = require('../../content/text').index.about;
-
+import json from '../../content/text';
 
 var BodyText = React.createClass({
   PropTypes: {
@@ -36,4 +35,4 @@ var BodyText = React.createClass({
 
 });
 
-module.exports = BodyText;
+export default BodyText;

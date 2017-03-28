@@ -1,11 +1,11 @@
 // Core
-var React = require('react');
+import React from 'react';
 
 // components
-var HomeContainer = require('../../containers/home/HomeContainer');
+import HomeContainer from '../../containers/home/HomeContainer';
 
 // styles
-var style = require('./_index.scss');
+import './_index.scss';
 
 function MainContainer(props) {
     return (
@@ -15,4 +15,4 @@ function MainContainer(props) {
     );
   }
 
-module.exports = MainContainer;
+export default MainContainer;

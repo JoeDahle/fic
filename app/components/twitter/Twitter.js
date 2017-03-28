@@ -1,15 +1,16 @@
 //  core
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from  'react';
 
 // components
-var Loading = require('../../components/loading/Loading');
-
-// data
-var TwitterHashSearch = require('react-twitter-widgets').Timeline;
+import Loading from '../../components/loading/Loading';
 
 // styles
 var style = require('./_index.scss');
+
+// data
+var Timeline = require('react-twitter-widgets').Timeline;
+
 
 var Twitter = React.createClass({
   getInitialState: function(){
@@ -35,7 +36,7 @@ var Twitter = React.createClass({
     } else {
       return (
         <div className='twitter-container'>
-          <TwitterHashSearch className='twitter-component' dataSource={{
+          <Timeline className='twitter-component' dataSource={{
               sourceType: 'widget',
               widgetId: '844245316706566144'
             }} />
@@ -46,4 +47,4 @@ var Twitter = React.createClass({
 
 });
 
-module.exports = Twitter;
+export default Twitter;

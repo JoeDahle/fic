@@ -1,5 +1,5 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import PropTypes from 'react';
 
 var Loading = React.createClass({
   PropTypes: {
@@ -44,4 +44,4 @@ var Loading = React.createClass({
   }
 });
 
-module.exports = Loading;
+export default Loading;
