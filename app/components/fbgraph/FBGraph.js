@@ -6,7 +6,8 @@ import PropTypes from 'react';
 import Graph from 'fb-react-sdk';
 
 // components
-import SignInButton from '../../components/signinbutton/SignInButton';
+import NewsFeed from '../../components/newsFeed/NewsFeed';
+import { Button, Icon, Label, Feed } from 'semantic-ui-react';
 
 // styles
 import './_index.scss';
@@ -21,7 +22,7 @@ var FBGraph = React.createClass({
     return {
       loggedIn: false,
       username: '',
-      buttonText: 'Continue using Facebook',
+      buttonText: 'Continue with Facebook',
       picture: ''
     }
   },
@@ -85,7 +86,7 @@ var FBGraph = React.createClass({
       console.log('//DEV// setUsername ', response);
       this.setState({
         username: response.name,
-        picture: response.picture,
+        picture: response.picture.data.url,
         buttonText: "Hello " + response.name
       })
       console.log(this.state);
@@ -120,11 +121,34 @@ var FBGraph = React.createClass({
   },
   // NOTE render based on logged in status
   render: function() {
+    console.log(this.state);
+
     return (
       <div>
-        <h2 onClick={this.getGraphSearchData}>get data</h2>
+        // <h2 onClick={this.getGraphSearchData}>get data</h2>
         <div className="facebook-container">
-          <SignInButton onClick={this.handleClick} text={this.state.buttonText} active={this.state.loggedin} />
+          <Button
+            onClick={this.handleClick}
+            color='facebook'>
+            <Icon name='facebook' />
+            {this.state.buttonText}
+          </Button>
+          <div className='fb-feed'>
+            <Feed>
+              <Feed.Event>
+                <Feed.Label>
+                  <img src={this.state.picture} />
+                </Feed.Label>
+                <Feed.Content>
+                  <Feed.Summary>
+                    <Feed.User>{this.state.username}</Feed.User>
+                    <Feed.Extra>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq</Feed.Extra>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
+            </Feed>
+            <NewsFeed />
+          </div>
         </div>
       </div>
     );

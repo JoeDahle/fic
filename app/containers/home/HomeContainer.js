@@ -24,15 +24,10 @@ var HomeContainer = React.createClass({
       <div className='home-container'>
         <Header />
         <BodyText />
-        <Link to={'/spreadtheword'}>
-          <Button animated color="violet" className='btn'>
-            <Button.Content visible>Spread The Word</Button.Content>
-            <Button.Content hidden>
-              <span>Let's Go!</span>
-              <Icon name="right arrow" />
-            </Button.Content>
-          </Button>
-        </Link>
+        <NavButton visibleText='Spread the word'
+          hiddenText="Let's go!"
+          path='/spreadtheword'
+          arrowDirection="right arrow" />
       </div>
     );
   }
