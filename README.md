@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/JoeDahle/fic.png?label=ready&title=Ready)](https://waffle.io/JoeDahle/fic)
 # TBELL F.I.C
 
 TBELL FIC is an attempt leveraging the voice of the masses in persuading Taco Bell to give fried ice cream a try. It's also a project for myself to help solidify my understanding of React, React Router and all that that entails.
