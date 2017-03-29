@@ -7,6 +7,7 @@ import Graph from 'fb-react-sdk';
 
 // components
 import NewsFeed from '../../components/newsFeed/NewsFeed';
+import Loading from '../../components/loading/Loading';
 import { Button, Icon, Label, Feed } from 'semantic-ui-react';
 
 // styles
@@ -15,6 +16,7 @@ import './_index.scss';
 var NAME = '';
 var PICTURE_URL = '';
 var TOKEN = '';
+var posts = {};
 
 /**
  * React component to handle login, and page feed request and rendering
@@ -28,7 +30,8 @@ var FBGraph = React.createClass({
       name: '',
       pictureUrl: '',
       token: '',
-      isLoading: false
+      isLoading: false,
+      data: {}
     }
   },
   componentWillMount: function(){
@@ -58,12 +61,15 @@ var FBGraph = React.createClass({
       this.setState({
         loggedIn: true
       });
-      console.log(response.authResponse.accessToken);
+      // Enable for production
       Graph.setAccessToken(response.authResponse.accessToken);
+      // ONLY FOR DEV, IS A TEST USER
+      // Graph.setAccessToken('EAADzVlEenIcBAHYpjnfotUj1lRu7xG2bJPnuYJVlF8YjlfmyagSEqLpai5bWZB5Xcmg7GIngZCynmF1b9WEgL8EL1V9xGaZCSJ79thcaZBmZAvLzqUIRkLjjZBxj7fFY7Dkkz3w4DJG0WNOxPIZCP4O3UWrD25wFe3mqY6MlrZBl0kYOpkED6qovLj2QVJCljJfzvZBRIh8W3ZBpf5MF5v199pLrdgDM2ISiQ8cZBWhRzayJQZDZD')
 
       this.setUserData();
     } else {
-      window.alert("There was an error!");
+      // window.alert("There was an error!");
+      console.log('not logged in');
     }
   },
   setUserData: function(){
@@ -82,48 +88,43 @@ var FBGraph = React.createClass({
   },
   getGraphFeed: function(){
     var feedId = '270326020090570/feed';
-    var fields = "?fields=from,shares,picture,message,updated_time";
-    var limit = '?limit'
+    var fields = "?fields=from{picture,name},shares,picture,message,updated_time";
     // Give time for async to finish
     setTimeout(function () {
       Graph.get(feedId + fields, function(err, response){
         console.log(response);
-      })
-    }, 3000);
+        this.setState({
+          data: response.data
+        });
+      }.bind(this))
+    }.bind(this), 3000);
   },
-
+  handleClick: function(e){
+    FB.login(function(){
+      FB.getLoginStatus(function(response){
+        console.log("get login status");
+        console.log(response);
+      }.bind(this))
+      // TODO Refresh the page to update
+    });
+  },
+  handleClickLogout: function(e){
+    FB.logout(function(response){
+      console.log(response);
+      // TODO refresh page
+    })
+  },
   // NOTE render based on logged in status
   render: function() {
+    if(this.state.data[0] === undefined){
+      return(
+        <Loading />
+      )
+    }
     return (
-      <div>
-        // <h2 onClick={this.getGraphSearchData}>get data</h2>
-        <div className="facebook-container">
-          <Button
-            onClick={this.handleClick}
-            color='facebook'>
-            <Icon name='facebook' />
-            {this.state.name}
-          </Button>
-          <div className='fb-feed'>
-            <Feed>
-              <Feed.Event>
-                <Feed.Label>
-                  <img src={this.state.picture} />
-                </Feed.Label>
-                <Feed.Content>
-                  <Feed.Summary>
-                    <Feed.User>{this.state.username}</Feed.User>
-                    <Feed.Extra>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq</Feed.Extra>
-                  </Feed.Summary>
-                </Feed.Content>
-              </Feed.Event>
-            </Feed>
-          </div>
-        </div>
-      </div>
-    );
+      <NewsFeed className='NewsFeed' postsArray={this.state.data}/>
+    )
   }
-
 });
 
 export default FBGraph;
