@@ -12,6 +12,10 @@ import { Button, Icon, Label, Feed } from 'semantic-ui-react';
 // styles
 import './_index.scss';
 
+var NAME = '';
+var PICTURE_URL = '';
+var TOKEN = '';
+
 /**
  * React component to handle login, and page feed request and rendering
  * TODO move logic outside core component
@@ -21,16 +25,13 @@ var FBGraph = React.createClass({
   getInitialState: function(){
     return {
       loggedIn: false,
-      username: '',
-      buttonText: 'Continue with Facebook',
-      picture: ''
+      name: '',
+      pictureUrl: '',
+      token: '',
+      isLoading: false
     }
   },
-  /**
-   * Set headers for Graph session, retrieve a logged in state
-   * @return [type] [description]
-   */
-  componentDidMount: function() {
+  componentWillMount: function(){
     window.fbAsyncInit = function() {
       FB.init({
         appId: '267552053697671',
@@ -50,79 +51,49 @@ var FBGraph = React.createClass({
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk')
-  )},
-  /**
-   * Check Facebook login status
-   * @param  {obj} response Object returned by Graph API
-   *
-   * If connected, set the auth token for the users device
-   */
+    }(document, 'script', 'facebook-jssdk'));
+  },
   statusChangeCallback: function(response){
-    if(response.status === 'connected'){
-      this.setUsername();
+    if (response.status === 'connected') {
       this.setState({
-        loggedIn: true,
+        loggedIn: true
       });
-      this.setGraphAuthToken(response.authResponse.accessToken);
-    } else if(response.status === 'not_authorized'){
-      console.warn('//DEV// statusChangeCallback is not authorized');
+      console.log(response.authResponse.accessToken);
+      Graph.setAccessToken(response.authResponse.accessToken);
+
+      this.setUserData();
     } else {
-      console.warn('//DEV// statusChangeCallback not logged in');
+      window.alert("There was an error!");
     }
   },
-  /**
-   * Check if user is logged into app
-   */
-  checkLoginState: function(){
-    FB.getLoginStatus(function(response){
-      console.log(response, "getloginstate");
-      this.getUsername(response.authResponse.userID);
-      this.statusChangeCallback(response);
-    }.bind(this))
-  },
-  setUsername: function() {
-    FB.api('/me?fields=picture,name', function(response) {
-      console.log('//DEV// setUsername ', response);
+  setUserData: function(){
+    FB.api('/me?fields=name,picture', function(response){
       this.setState({
-        username: response.name,
-        picture: response.picture.data.url,
-        buttonText: "Hello " + response.name
-      })
-      console.log(this.state);
+        name: response.name,
+        pictureUrl: response.picture.data.url,
+      });
     }.bind(this));
   },
-  /**
-   * event handler for login component
-   */
-  handleClick: function(){
-    FB.login(this.checkLoginState())
-  },
-  /**
-   * fb-react-sdk set session access token
-   * @param  {string} token Token received from Graph API login response
-   *
-   */
-  setGraphAuthToken: function(token){
-    Graph.setAccessToken(token);
-  },
-  /**
-   * Options for querying Graph.facebook...
-   * @return {object} JSON Page Feed object of posts
-   *
-   * Not quite returning all needed information.
-   * NOTE update the query URL maybe?
-   */
-  getGraphSearchData: function(){
-    Graph.get('270326020090570/feed?fields=from,shares,picture,message,updated_time', function(err, response){
-      console.log(response);
-      posts = response;
+  componentDidMount: function(){
+    this.setState({
+      isLoading: true
     });
+    this.getGraphFeed();
   },
+  getGraphFeed: function(){
+    var feedId = '270326020090570/feed';
+    var fields = "?fields=from,shares,picture,message,updated_time";
+    var limit = '?limit'
+    // Give time for async to finish
+    setTimeout(function () {
+      Graph.get(feedId + fields, function(err, response){
+        console.log(response);
+      })
+    }, 3000);
+  },
+
   // NOTE render based on logged in status
   render: function() {
-    console.log(this.state);
-
     return (
       <div>
         // <h2 onClick={this.getGraphSearchData}>get data</h2>
@@ -131,7 +102,7 @@ var FBGraph = React.createClass({
             onClick={this.handleClick}
             color='facebook'>
             <Icon name='facebook' />
-            {this.state.buttonText}
+            {this.state.name}
           </Button>
           <div className='fb-feed'>
             <Feed>
@@ -147,7 +118,6 @@ var FBGraph = React.createClass({
                 </Feed.Content>
               </Feed.Event>
             </Feed>
-            <NewsFeed />
           </div>
         </div>
       </div>
