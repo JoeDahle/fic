@@ -8,15 +8,11 @@ import Graph from 'fb-react-sdk';
 // components
 import NewsFeed from '../../components/newsFeed/NewsFeed';
 import Loading from '../../components/loading/Loading';
+import PostGraphStatus from '../../components/postGraphStatus/PostGraphStatus';
 import { Button, Icon, Label, Feed } from 'semantic-ui-react';
 
 // styles
 import './_index.scss';
-
-var NAME = '';
-var PICTURE_URL = '';
-var TOKEN = '';
-var posts = {};
 
 /**
  * React component to handle login, and page feed request and rendering
@@ -114,6 +110,11 @@ var FBGraph = React.createClass({
       // TODO refresh page
     })
   },
+  postGraphStatus: function(message){
+    Graph.post("/feed", message, function(err, response){
+      console.log(response);
+    });
+  },
   // NOTE render based on logged in status
   render: function() {
     if(this.state.data[0] === undefined){
@@ -122,7 +123,13 @@ var FBGraph = React.createClass({
       )
     }
     return (
-      <NewsFeed className='NewsFeed' postsArray={this.state.data}/>
+      <div>
+        <NewsFeed
+          className='NewsFeed'
+          postsArray={this.state.data} />
+        <PostGraphStatus />
+      </div>
+
     )
   }
 });
