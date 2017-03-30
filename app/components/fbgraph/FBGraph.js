@@ -88,7 +88,7 @@ var FBGraph = React.createClass({
     // Give time for async to finish
     setTimeout(function () {
       Graph.get(feedId + fields, function(err, response){
-        console.log(response);
+        // console.log(response);
         this.setState({
           data: response.data
         });
@@ -111,15 +111,20 @@ var FBGraph = React.createClass({
     })
   },
   postGraphStatus: function(message){
-    Graph.post("/feed", message, function(err, response){
+    Graph.post("270326020090570/feed", message, function(err, response){
       console.log(response);
     });
+    // console.log('all good to go ' + message);
   },
   // NOTE render based on logged in status
   render: function() {
     if(this.state.data[0] === undefined){
       return(
-        <Loading />
+        <Button onClick={this.handleClick}>Log in</Button>
+      )
+    } else if(this.state.loggedIn === false){
+      return (
+        <Button onClick={this.handleClick}>Log in</Button>
       )
     }
     return (
@@ -127,7 +132,8 @@ var FBGraph = React.createClass({
         <NewsFeed
           className='NewsFeed'
           postsArray={this.state.data} />
-        <PostGraphStatus />
+        <PostGraphStatus shouldUpdateStatus={this.postGraphStatus}/>
+        <Button onClick={this.handleClickLogout}>Logout</Button>
       </div>
 
     )
