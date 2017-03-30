@@ -19,6 +19,7 @@ import './_index.scss';
  * TODO move logic outside core component
  *
  */
+
 var FBGraph = React.createClass({
   getInitialState: function(){
     return {
@@ -31,6 +32,9 @@ var FBGraph = React.createClass({
     }
   },
   componentWillMount: function(){
+    console.log('cwm');
+  },
+  handleLoginClick: function(){
     window.fbAsyncInit = function() {
       FB.init({
         appId: '267552053697671',
@@ -54,32 +58,24 @@ var FBGraph = React.createClass({
   },
   statusChangeCallback: function(response){
     if (response.status === 'connected') {
-      this.setState({
-        loggedIn: true
-      });
-      // Enable for production
       Graph.setAccessToken(response.authResponse.accessToken);
-      // ONLY FOR DEV, IS A TEST USER
-      // Graph.setAccessToken('EAADzVlEenIcBAHYpjnfotUj1lRu7xG2bJPnuYJVlF8YjlfmyagSEqLpai5bWZB5Xcmg7GIngZCynmF1b9WEgL8EL1V9xGaZCSJ79thcaZBmZAvLzqUIRkLjjZBxj7fFY7Dkkz3w4DJG0WNOxPIZCP4O3UWrD25wFe3mqY6MlrZBl0kYOpkED6qovLj2QVJCljJfzvZBRIh8W3ZBpf5MF5v199pLrdgDM2ISiQ8cZBWhRzayJQZDZD')
-
       this.setUserData();
     } else {
       // window.alert("There was an error!");
-      console.log('not logged in');
+      this.setState({
+        loggedIn: false
+      });
     }
   },
+  // get graph data here bleolw
   setUserData: function(){
     FB.api('/me?fields=name,picture', function(response){
       this.setState({
         name: response.name,
         pictureUrl: response.picture.data.url,
+        loggedIn: true
       });
     }.bind(this));
-  },
-  componentDidMount: function(){
-    this.setState({
-      isLoading: true
-    });
     this.getGraphFeed();
   },
   getGraphFeed: function(){
@@ -106,9 +102,10 @@ var FBGraph = React.createClass({
   },
   handleClickLogout: function(e){
     FB.logout(function(response){
-      console.log(response);
-      // TODO refresh page
-    })
+      this.setState({
+        loggedIn: false
+      })
+    }.bind(this));
   },
   postGraphStatus: function(message){
     Graph.post("270326020090570/feed", message, function(err, response){
@@ -117,27 +114,55 @@ var FBGraph = React.createClass({
     // console.log('all good to go ' + message);
   },
   // NOTE render based on logged in status
-  render: function() {
-    if(this.state.data[0] === undefined){
-      return(
-        <Button onClick={this.handleClick}>Log in</Button>
-      )
+  render: function(){
+    if(this.state.loggedIn === true){
+      if(this.state.data[0] === undefined){
+        return (
+          <Loading />
+        )
+      } else if(this.state.data[0]){
+        return (
+          <div>
+            <NewsFeed
+              className='NewsFeed'
+              postsArray={this.state.data} />
+            <Button onClick={this.handleClickLogout}>Logout</Button>
+              <PostGraphStatus shouldUpdateStatus={this.postGraphStatus}/>
+          </div>
+        )
+      } else {
+        return (
+          <div>Something wonky is going on</div>
+        )
+      }
     } else if(this.state.loggedIn === false){
       return (
-        <Button onClick={this.handleClick}>Log in</Button>
+        <Button onClick={this.handleLoginClick}>Login</Button>
       )
     }
-    return (
-      <div>
-        <NewsFeed
-          className='NewsFeed'
-          postsArray={this.state.data} />
-        <PostGraphStatus shouldUpdateStatus={this.postGraphStatus}/>
-        <Button onClick={this.handleClickLogout}>Logout</Button>
-      </div>
-
-    )
   }
+
+    // render: function() {
+  //   if(this.state.data[0] === undefined){
+  //     return(
+  //       <Button onClick={this.handleClick}>Log in</Button>
+  //     )
+  //   } else if(this.state.loggedIn === false){
+  //     return (
+  //       <Button onClick={this.handleClick}>Log in</Button>
+  //     )
+  //   }
+  //   return (
+  //     <div>
+  //       <NewsFeed
+  //         className='NewsFeed'
+  //         postsArray={this.state.data} />
+  //       <PostGraphStatus shouldUpdateStatus={this.postGraphStatus}/>
+  //       <Button onClick={this.handleClickLogout}>Logout</Button>
+  //     </div>
+  //
+  //   )
+  // }
 });
 
 export default FBGraph;
