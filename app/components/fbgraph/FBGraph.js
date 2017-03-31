@@ -8,6 +8,7 @@ import Graph from 'fb-react-sdk';
 // components
 import NewsFeed from '../../components/newsFeed/NewsFeed';
 import Loading from '../../components/loading/Loading';
+import NavButton from '../../components/navbutton/NavButton';
 import PostGraphStatus from '../../components/postGraphStatus/PostGraphStatus';
 import { Button, Icon, Label, Feed } from 'semantic-ui-react';
 
@@ -30,9 +31,6 @@ var FBGraph = React.createClass({
       isLoading: false,
       data: {}
     }
-  },
-  componentWillMount: function(){
-    console.log('cwm');
   },
   handleLoginClick: function(){
     window.fbAsyncInit = function() {
@@ -126,7 +124,12 @@ var FBGraph = React.createClass({
             <NewsFeed
               className='NewsFeed'
               postsArray={this.state.data} />
-            <Button onClick={this.handleClickLogout}>Logout</Button>
+            <NavButton
+              onClick={this.handleClickLogout}
+              color='facebook'
+              visibleText='Logout of Facebook'
+              hiddenText='Are you sure?'
+              arrowDirection='remove user'>Logout</NavButton>
               <PostGraphStatus shouldUpdateStatus={this.postGraphStatus}/>
           </div>
         )

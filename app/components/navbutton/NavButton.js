@@ -10,6 +10,7 @@ import style from './_index.scss';
 
 var NavButton = React.createClass({
   PropTypes: {
+    color: PropTypes.string,
     visibleText: PropTypes.string,
     hiddenText: PropTypes.string,
     path: PropTypes.string,
@@ -17,6 +18,7 @@ var NavButton = React.createClass({
   },
   getDefaultProps: function(){
     return {
+      color: 'violet',
       visibleText: 'Go Home',
       hiddenText: 'Pack it up',
       path: '/home',
@@ -27,7 +29,7 @@ var NavButton = React.createClass({
     return (
       <div className="NavButton-Wrapper">
         <Link to={this.props.path}>
-          <Button animated color="violet" className='btn'>
+          <Button animated color={this.props.color} className='btn'>
             <Button.Content visible>{this.props.visibleText}</Button.Content>
             <Button.Content hidden>
               <Icon name={this.props.arrowDirection} />

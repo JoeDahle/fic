@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import Header from '../../components/header/Header'
 import BodyText from '../../components/bodytext/BodyText'
 import NavButton from '../../components/navbutton/NavButton'
+import Ripple from '../../components/ripple/Ripple';
 import { Button, Icon } from 'semantic-ui-react';
 
 // styles
@@ -28,6 +29,7 @@ var HomeContainer = React.createClass({
           hiddenText="Let's go!"
           path='/spreadtheword'
           arrowDirection="right arrow" />
+        <Ripple />
       </div>
     );
   }
