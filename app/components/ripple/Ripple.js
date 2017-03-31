@@ -8,13 +8,13 @@ const Ripple = React.createClass({
     return (
       <ReactCSSTransition
         transitionName={{
-          ripple-container: 'ripple-container',
-          ripple-ripple-enter: 'ripple-ripple-enter',
-          ripple-ripple-leave: 'ripple-ripple-leave',
-          ripple-content-enter: 'ripple-content-enter',
-          ripple-content-leave: 'ripple-content-leave',
-          button-open: 'button-active',
-          button-close: 'button-close'
+          rippleContainer: 'ripple-container',
+          rippleRippleEnter: 'ripple-ripple-enter',
+          rippleRippleLeave: 'ripple-ripple-leave',
+          rippleContentEnter: 'ripple-content-enter',
+          rippleContentLeave: 'ripple-content-leave',
+          buttonOpen: 'button-active',
+          buttonClose: 'button-close'
         }}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={500}>
